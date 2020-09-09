@@ -1,16 +1,33 @@
 <template>
     <div id="app">
-        <HelloWorld msg="Welcome to Text Editor" />
+        <TextBlock @update="onUpdate" />
+        <InfoBlock :jsonData="jsonData" />
+
+        
+        <!-- <InfoBlock v-model="jsonData1" /> -->
     </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import TextBlock from '@/components/TextBlock.vue'
+import InfoBlock from '@/components/InfoBlock.vue'
 export default {
     name: 'App',
+    data() {
+        return {
+            jsonData: null,
+        }
+    },
     components: {
-        HelloWorld,
+        TextBlock,
+        InfoBlock,
+    },
+    methods: {
+        onUpdate(data) {
+            /* console.log('child component text', data) */
+            this.jsonData = data
+            /* console.log(this.jsonData) */
+        },
     },
 }
 </script>
