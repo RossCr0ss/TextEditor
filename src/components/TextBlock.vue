@@ -19,12 +19,7 @@
             <span style="color: rgb(186, 104, 200); background-color: rgb(248, 187, 0);">Ponny</span>
         </div>
 
-        <!-- <div class="button-group">
-            <button v-on:click="fontSize++">Increase font size</button>
-            <button v-on:click="fontSize--">Decrease font size</button>
-        </div>-->
-
-        <!-- <div class="select-group">
+    
             <select v-model="color">
                 <option disabled value>Select one of colors</option>
                 <option>Blue</option>
