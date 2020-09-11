@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <pre>{{ jsonData | json }}</pre>
+        <p class="box">{{ jsonData | json }}</p>
     </div>
 </template>
 
@@ -15,8 +15,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .wrapper {
     margin: 1rem auto;
+
+    .box{
+        max-width: 600px;
+        margin: 0 auto
+    }
 }
 </style>

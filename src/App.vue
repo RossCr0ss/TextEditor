@@ -9,14 +9,9 @@
 </template>
 
         
-        <!-- <InfoBlock v-model="jsonData1" /> -->
-    </div>
-</template>
-
 <script>
 import TextBlock from '@/components/TextBlock.vue'
 import InfoBlock from '@/components/InfoBlock.vue'
-import CodeEditor from '@/components/CodeEditor.vue'
 
 export default {
     name: 'App',
@@ -32,9 +27,7 @@ export default {
     },
     methods: {
         onUpdate(data) {
-            /* console.log('child component text', data) */
             this.jsonData = data
-            /* console.log(this.jsonData) */
         },
     },
 }

@@ -19,12 +19,12 @@
             <span style="color: rgb(186, 104, 200); background-color: rgb(248, 187, 0);">Ponny</span>
         </div>
 
-        <div class="button-group">
+        <!-- <div class="button-group">
             <button v-on:click="fontSize++">Increase font size</button>
             <button v-on:click="fontSize--">Decrease font size</button>
-        </div>
+        </div>-->
 
-        <div class="select-group">
+        <!-- <div class="select-group">
             <select v-model="color">
                 <option disabled value>Select one of colors</option>
                 <option>Blue</option>
@@ -40,46 +40,58 @@
                 <option>Gray</option>
             </select>
             <span>Selected background color: {{ backgroundColor }}</span>
-        </div>
+        </div>-->
 
         <div class="toolbar">
-            <button @click="boldText" class="toolbar-b" title="Bold">Bold</button>
-            <button @click="italicText" class="toolbar-i" title="Italic">Italic</button>
+            <div class="button-group">
+                <button @click="boldText" class="toolbar-b" title="Bold">Bold</button>
+                <button @click="italicText" class="toolbar-i" title="Italic">Italic</button>
+            </div>
             <br />
-            <select @change="fontStyleChange($event)" class="toolbar-font">
-                <option selected="selected" disabled="disabled">Font</option>
-                <option value="arial">Arial</option>
-                <option value="Courier New">Courier New</option>
-                <option value="georgia">Georgia</option>
-                <option value="impact">Impact</option>
-                <option value="roboto">Tahoma</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="verdana">Verdana</option>
-            </select>
-            <select @change="fontSizeChange($event)" class="toolbar-size">
-                <option selected="selected" disabled="disabled">Size</option>
-                <option value="1">10px</option>
-                <option value="2">12px</option>
-                <option value="3">14px</option>
-                <option value="4">16px</option>
-                <option value="5">18px</option>
-                <option value="6">21px</option>
-                <option value="7">26px</option>
-            </select>
-            <span>Color</span>
-            <input
-                @change="fontColorChange($event)"
-                class="toolbar-color"
-                type="color"
-                value="#ff0000"
-            />
-            <span>Background</span>
-            <input
-                @change="backgroundColorChange($event)"
-                class="toolbar-bg"
-                type="color"
-                value="#ffff00"
-            />
+            <div class="style-box">
+                <select @change="fontStyleChange($event)" class="toolbar-font">
+                    <option selected="selected" disabled="disabled">Font</option>
+                    <option value="arial">Arial</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="impact">Impact</option>
+                    <option value="roboto">Tahoma</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="verdana">Verdana</option>
+                </select>
+                <select @change="fontSizeChange($event)" class="toolbar-size">
+                    <option selected="selected" disabled="disabled">Size</option>
+                    <option value="1">10px</option>
+                    <option value="2">12px</option>
+                    <option value="3">14px</option>
+                    <option value="4">16px</option>
+                    <option value="5">18px</option>
+                    <option value="6">21px</option>
+                    <option value="7">26px</option>
+                </select>
+
+                <div class="box-color">
+                    <label for="color">Color</label>
+                    <input
+                        @change="fontColorChange($event)"
+                        class="toolbar-color"
+                        type="color"
+                        id="color"
+                        value="#ff0000"
+                    />
+                </div>
+
+                <div class="box-background">
+                    <label for="background">Background</label>
+                    <input
+                        @change="backgroundColorChange($event)"
+                        class="toolbar-bg"
+                        type="color"
+                        id="background"
+                        value="#ffff00"
+                    />
+                </div>
+            </div>
             <br />
         </div>
     </div>
@@ -98,14 +110,27 @@ export default {
     },
     methods: {
         update(event) {
-            let data = JSON.stringify({
-                text: event.target.innerText,
-                style: {
-                    color: event.target.style.color,
-                    backgroundColor: event.target.style.backgroundColor,
-                    fontSize: event.target.style.fontSize,
-                },
-            })
+            let dataArr = event.target.children
+            console.log((dataArr));
+            let data = [];
+            for (let i = 0; i < dataArr.length; i++) {
+                
+                /* if (dataArr[i].childNodes.length > 1 ) {
+                    console.log('good');
+                } */
+                
+                let item = {
+                    backgroundColor: dataArr[i].style.backgroundColor,
+                    color: dataArr[i].style.color,
+                    fontSize: dataArr[i].style.fontSize,
+                    textContent: dataArr[i].textContent
+                }
+                data.push(item)
+                
+            }
+
+            console.log(JSON.stringify(data));
+
             this.$emit('update', data)
         },
 
@@ -155,5 +180,30 @@ li {
 }
 a {
     color: #42b983;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .button-group {
+        margin: 1rem 0;
+
+        button {
+            margin: 0 1rem;
+        }
+    }
+
+    .style-box {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-width: 600px;
+
+        div > label {
+            margin-right: 0.5rem;
+        }
+    }
 }
 </style>
