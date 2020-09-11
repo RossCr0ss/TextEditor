@@ -3,6 +3,11 @@
         <TextBlock @update="onUpdate" />
         <InfoBlock :jsonData="jsonData" />
 
+        <CodeEditor />
+
+    </div>
+</template>
+
         
         <!-- <InfoBlock v-model="jsonData1" /> -->
     </div>
@@ -11,6 +16,8 @@
 <script>
 import TextBlock from '@/components/TextBlock.vue'
 import InfoBlock from '@/components/InfoBlock.vue'
+import CodeEditor from '@/components/CodeEditor.vue'
+
 export default {
     name: 'App',
     data() {
@@ -21,6 +28,7 @@ export default {
     components: {
         TextBlock,
         InfoBlock,
+        CodeEditor,
     },
     methods: {
         onUpdate(data) {
