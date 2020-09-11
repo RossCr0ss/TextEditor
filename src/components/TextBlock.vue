@@ -19,23 +19,6 @@
             <span style="color: rgb(186, 104, 200); background-color: rgb(248, 187, 0);">Ponny</span>
         </div>
 
-    
-            <select v-model="color">
-                <option disabled value>Select one of colors</option>
-                <option>Blue</option>
-                <option>Green</option>
-                <option>Red</option>
-            </select>
-            <span>Selected color: {{ color }}</span>
-
-            <select v-model="backgroundColor">
-                <option disabled value>Select one of background color</option>
-                <option>White</option>
-                <option>Yellow</option>
-                <option>Gray</option>
-            </select>
-            <span>Selected background color: {{ backgroundColor }}</span>
-        </div>-->
 
         <div class="toolbar">
             <div class="button-group">
